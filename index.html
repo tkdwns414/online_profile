@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>디지털 명함</title>
+  <style>
+    :root {
+      --bg-color: #1a1a1a;
+      --accent-color: #d4a242;
+      --text-color: #ffffff;
+      --muted-color: #cccccc;
+      --card-radius: 12px;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #2b2b2b;
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .card {
+      background: var(--bg-color);
+      border-radius: var(--card-radius);
+      padding: 24px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    .logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .logo img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+
+    .info {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .info h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      color: var(--accent-color);
+    }
+
+    .info h2 {
+      font-size: 1rem;
+      color: var(--muted-color);
+      margin: 4px 0;
+    }
+
+    .info h3 {
+      font-size: 0.9rem;
+      margin: 4px 0;
+    }
+
+    .contact {
+      list-style: none;
+      padding: 0;
+      font-size: 0.9rem;
+    }
+
+    .contact li {
+      margin: 12px 0;
+    }
+
+    .contact a {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    .company-logo {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: auto;
+      filter: brightness(0) invert(1);
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 16px;
+      }
+
+      .info h1 {
+        font-size: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="region" aria-label="디지털 명함">
+    <div class="logo" aria-hidden="true">
+      <img src="bc.jpg" alt="프로필 사진" />
+    </div>
+    <div class="info">
+      <h1>Park Sangjune</h1>
+      <h2>Professional Developer</h2>
+      <h3>기관서비스개발부</h3>
+      <h3>Shinhan Bank</h3>
+    </div>
+    <ul class="contact">
+      <li><a href="tel:+00123456789012" aria-label="전화 걸기">📞 +00 1234 5678 9012</a></li>
+      <li><a href="mailto:info@companyname.com" aria-label="이메일 보내기">📧 info@companyname.com</a></li>
+      <li><a href="https://www.websiteaddress.com" target="_blank" aria-label="웹사이트 방문">🌐 www.websiteaddress.com</a></li>
+      <li><a href="https://maps.google.com/?q=124+Dummy,+Lorem+Ipsum" target="_blank" aria-label="지도에서 주소 보기">📍 서울시 중구 세종대로 9길 20</a></li>
+    </ul>
+    <img src="shinhan.png" alt="Shinhan Bank Logo" class="company-logo" />
+  </div>
+</body>
+</html>
