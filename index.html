@@ -23,22 +23,49 @@
       align-items: center;
       min-height: 100vh;
       padding: 20px;
+      perspective: 1000px;
+    }
+
+    .card-container {
+      width: 100%;
+      max-width: 400px;
+      height: 450px;
+      position: relative;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+      cursor: pointer;
+    }
+
+    .card-container.flipped {
+      transform: rotateY(180deg);
     }
 
     .card {
       background: var(--bg-color);
       border-radius: var(--card-radius);
       padding: 24px;
-      max-width: 400px;
       width: 100%;
+      height: 100%;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-      position: relative;
+      position: absolute;
+      backface-visibility: hidden;
+      box-sizing: border-box;
+    }
+
+    .card.back {
+      transform: rotateY(180deg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 20px;
+      background: var(--bg-color);
     }
 
     .logo {
       display: flex;
-      justify-content: center;
-      margin-bottom: 16px;
+      justify-content: flex-start;
+      margin-bottom: 20px;
+      padding-left: 10px;
     }
 
     .logo img {
@@ -48,25 +75,49 @@
     }
 
     .info {
-      text-align: center;
+      text-align: left;
       margin-bottom: 20px;
+      padding: 0 10px;
     }
 
     .info h1 {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       margin: 0;
       color: var(--accent-color);
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
     }
 
     .info h2 {
-      font-size: 1rem;
-      color: var(--muted-color);
-      margin: 4px 0;
+      font-size: 1.1rem;
+      color: var(--text-color);
+      margin: 0;
+      font-weight: 500;
+      margin-bottom: 4px;
     }
 
     .info h3 {
-      font-size: 0.9rem;
-      margin: 4px 0;
+      font-size: 1rem;
+      margin: 0;
+      color: var(--muted-color);
+    }
+
+    .info h3.department {
+      margin-bottom: 2px;
+    }
+
+    .info h3.company {
+      font-size: 1.1rem;
+      color: var(--text-color);
+      font-weight: 500;
+      margin-top: 8px;
+    }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background-color: var(--accent-color);
+      margin: 15px 0 15px 10px;
     }
 
     .contact {
@@ -95,6 +146,92 @@
       width: 40px;
       height: auto;
       filter: brightness(0) invert(1);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .company-logo:hover {
+      transform: scale(1.1);
+    }
+
+    /* 2048 Game Styles */
+    .game-container {
+      display: block;
+      margin: 0 auto;
+      background: #bbada0;
+      padding: 8px;
+      border-radius: 6px;
+      width: 240px;
+      height: 240px;
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
+      background: #bbada0;
+    }
+
+    .grid-cell {
+      width: 52px;
+      height: 52px;
+      background: rgba(238, 228, 218, 0.35);
+      border-radius: 3px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: #776e65;
+    }
+
+    .tile {
+      background: #eee4da;
+    }
+
+    .tile-2 { background: #eee4da; }
+    .tile-4 { background: #ede0c8; }
+    .tile-8 { background: #f2b179; color: #f9f6f2; }
+    .tile-16 { background: #f59563; color: #f9f6f2; }
+    .tile-32 { background: #f67c5f; color: #f9f6f2; }
+    .tile-64 { background: #f65e3b; color: #f9f6f2; }
+    .tile-128 { background: #edcf72; color: #f9f6f2; }
+    .tile-256 { background: #edcc61; color: #f9f6f2; }
+    .tile-512 { background: #edc850; color: #f9f6f2; }
+    .tile-1024 { background: #edc53f; color: #f9f6f2; }
+    .tile-2048 { background: #edc22e; color: #f9f6f2; }
+
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 15px 0;
+    }
+
+    .social-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 12px;
+      border-radius: 16px;
+      background: var(--accent-color);
+      color: var(--bg-color);
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.2s, background-color 0.2s;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+
+    .social-button:hover {
+      transform: translateY(-2px);
+      background: #e4b052;
+    }
+
+    .social-button i {
+      margin-right: 8px;
+      font-size: 1.2em;
     }
 
     @media (max-width: 480px) {
@@ -105,27 +242,290 @@
       .info h1 {
         font-size: 1.25rem;
       }
+
+      .card-container {
+        height: 400px;
+      }
+
+      .game-container {
+        width: 200px;
+        height: 200px;
+        padding: 6px;
+      }
+
+      .grid-cell {
+        width: 44px;
+        height: 44px;
+        font-size: 16px;
+      }
+
+      .social-buttons {
+        flex-wrap: wrap;
+      }
+      
+      .social-button {
+        padding: 6px 12px;
+        font-size: 0.9em;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="card" role="region" aria-label="디지털 명함">
-    <div class="logo" aria-hidden="true">
-      <img src="bc.jpg" alt="프로필 사진" />
+  <div class="card-container">
+    <div class="card front">
+      <div class="logo" aria-hidden="true">
+        <img src="bc.jpg" alt="프로필 사진" />
+      </div>
+      <div class="info">
+        <h1 id="nameTitle">Park Sangjune</h1>
+        <h2>Professional Developer</h2>
+        <div class="divider"></div>
+        <h3 class="department">기관서비스개발부</h3>
+        <h3 class="company">Shinhan Bank</h3>
+      </div>
+      <div class="social-buttons">
+        <a href="https://github.com/YOUR_GITHUB" target="_blank" class="social-button">
+          <i>🐱</i> GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/YOUR_LINKEDIN" target="_blank" class="social-button">
+          <i>💼</i> LinkedIn
+        </a>
+        <a href="https://YOUR_BLOG_URL" target="_blank" class="social-button">
+          <i>📝</i> Blog
+        </a>
+      </div>
+      <ul class="contact">
+        <li><a href="tel:+00123456789012" aria-label="Call phone number">📞 +00 1234 5678 9012</a></li>
+        <li><a href="mailto:info@companyname.com" aria-label="Send email">📧 info@companyname.com</a></li>
+        <li><a href="https://www.websiteaddress.com" target="_blank" aria-label="Visit website">🌐 www.websiteaddress.com</a></li>
+        <li><a href="https://maps.google.com/?q=124+Dummy,+Lorem+Ipsum" target="_blank" aria-label="View address on map">📍 서울시 중구 세종대로 9길 20</a></li>
+      </ul>
+      <img src="shinhan.png" alt="Shinhan Bank Logo" class="company-logo" id="shinhanLogo" />
     </div>
-    <div class="info">
-      <h1>Park Sangjune</h1>
-      <h2>Professional Developer</h2>
-      <h3>기관서비스개발부</h3>
-      <h3>Shinhan Bank</h3>
+    <div class="card back">
+      <div id="gameContainer" class="game-container">
+        <div class="game-grid" id="gameGrid"></div>
+      </div>
     </div>
-    <ul class="contact">
-      <li><a href="tel:+00123456789012" aria-label="전화 걸기">📞 +00 1234 5678 9012</a></li>
-      <li><a href="mailto:info@companyname.com" aria-label="이메일 보내기">📧 info@companyname.com</a></li>
-      <li><a href="https://www.websiteaddress.com" target="_blank" aria-label="웹사이트 방문">🌐 www.websiteaddress.com</a></li>
-      <li><a href="https://maps.google.com/?q=124+Dummy,+Lorem+Ipsum" target="_blank" aria-label="지도에서 주소 보기">📍 서울시 중구 세종대로 9길 20</a></li>
-    </ul>
-    <img src="shinhan.png" alt="Shinhan Bank Logo" class="company-logo" />
   </div>
+
+  <script>
+    class Game2048 {
+      constructor() {
+        this.grid = Array(4).fill().map(() => Array(4).fill(0));
+        this.score = 0;
+        this.gameContainer = document.getElementById('gameContainer');
+        this.gameGrid = document.getElementById('gameGrid');
+        this.isGameVisible = false;
+        this.setupGame();
+      }
+
+      setupGame() {
+        // Clear the grid
+        this.gameGrid.innerHTML = '';
+        
+        // Create grid cells
+        for (let i = 0; i < 16; i++) {
+          const cell = document.createElement('div');
+          cell.className = 'grid-cell';
+          this.gameGrid.appendChild(cell);
+        }
+
+        // Initialize game
+        this.grid = Array(4).fill().map(() => Array(4).fill(0));
+        this.addNewTile();
+        this.addNewTile();
+        this.updateDisplay();
+
+        // Add keyboard controls
+        document.addEventListener('keydown', (e) => {
+          if (!this.isGameVisible) return;
+          
+          switch(e.key) {
+            case 'ArrowUp':
+              this.move('up');
+              break;
+            case 'ArrowDown':
+              this.move('down');
+              break;
+            case 'ArrowLeft':
+              this.move('left');
+              break;
+            case 'ArrowRight':
+              this.move('right');
+              break;
+          }
+        });
+      }
+
+      addNewTile() {
+        const emptyCells = [];
+        for (let i = 0; i < 4; i++) {
+          for (let j = 0; j < 4; j++) {
+            if (this.grid[i][j] === 0) {
+              emptyCells.push({x: i, y: j});
+            }
+          }
+        }
+        if (emptyCells.length > 0) {
+          const randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+          this.grid[randomCell.x][randomCell.y] = Math.random() < 0.9 ? 2 : 4;
+        }
+      }
+
+      move(direction) {
+        let moved = false;
+        const oldGrid = JSON.stringify(this.grid);
+
+        switch(direction) {
+          case 'up':
+            moved = this.moveUp();
+            break;
+          case 'down':
+            moved = this.moveDown();
+            break;
+          case 'left':
+            moved = this.moveLeft();
+            break;
+          case 'right':
+            moved = this.moveRight();
+            break;
+        }
+
+        if (moved) {
+          this.addNewTile();
+          this.updateDisplay();
+        }
+      }
+
+      moveLeft() {
+        let moved = false;
+        for (let i = 0; i < 4; i++) {
+          let row = this.grid[i].filter(x => x !== 0);
+          for (let j = 0; j < row.length - 1; j++) {
+            if (row[j] === row[j + 1]) {
+              row[j] *= 2;
+              row.splice(j + 1, 1);
+              moved = true;
+            }
+          }
+          while (row.length < 4) row.push(0);
+          if (JSON.stringify(this.grid[i]) !== JSON.stringify(row)) moved = true;
+          this.grid[i] = row;
+        }
+        return moved;
+      }
+
+      moveRight() {
+        let moved = false;
+        for (let i = 0; i < 4; i++) {
+          let row = this.grid[i].filter(x => x !== 0);
+          for (let j = row.length - 1; j > 0; j--) {
+            if (row[j] === row[j - 1]) {
+              row[j] *= 2;
+              row.splice(j - 1, 1);
+              row.unshift(0);
+              moved = true;
+            }
+          }
+          while (row.length < 4) row.unshift(0);
+          if (JSON.stringify(this.grid[i]) !== JSON.stringify(row)) moved = true;
+          this.grid[i] = row;
+        }
+        return moved;
+      }
+
+      moveUp() {
+        let moved = false;
+        for (let j = 0; j < 4; j++) {
+          let column = [];
+          for (let i = 0; i < 4; i++) {
+            column.push(this.grid[i][j]);
+          }
+          column = column.filter(x => x !== 0);
+          for (let i = 0; i < column.length - 1; i++) {
+            if (column[i] === column[i + 1]) {
+              column[i] *= 2;
+              column.splice(i + 1, 1);
+              moved = true;
+            }
+          }
+          while (column.length < 4) column.push(0);
+          for (let i = 0; i < 4; i++) {
+            if (this.grid[i][j] !== column[i]) moved = true;
+            this.grid[i][j] = column[i];
+          }
+        }
+        return moved;
+      }
+
+      moveDown() {
+        let moved = false;
+        for (let j = 0; j < 4; j++) {
+          let column = [];
+          for (let i = 0; i < 4; i++) {
+            column.push(this.grid[i][j]);
+          }
+          column = column.filter(x => x !== 0);
+          for (let i = column.length - 1; i > 0; i--) {
+            if (column[i] === column[i - 1]) {
+              column[i] *= 2;
+              column.splice(i - 1, 1);
+              column.unshift(0);
+              moved = true;
+            }
+          }
+          while (column.length < 4) column.unshift(0);
+          for (let i = 0; i < 4; i++) {
+            if (this.grid[i][j] !== column[i]) moved = true;
+            this.grid[i][j] = column[i];
+          }
+        }
+        return moved;
+      }
+
+      updateDisplay() {
+        const cells = this.gameGrid.children;
+        for (let i = 0; i < 4; i++) {
+          for (let j = 0; j < 4; j++) {
+            const value = this.grid[i][j];
+            const cell = cells[i * 4 + j];
+            cell.className = 'grid-cell' + (value ? ` tile tile-${value}` : '');
+            cell.textContent = value || '';
+          }
+        }
+      }
+
+      toggleGame() {
+        this.isGameVisible = !this.isGameVisible;
+        this.gameContainer.style.display = this.isGameVisible ? 'block' : 'none';
+        if (this.isGameVisible) {
+          this.setupGame();
+        }
+      }
+    }
+
+    // Initialize game
+    const game = new Game2048();
+    
+    // Remove old click handler from name
+    document.getElementById('nameTitle').removeEventListener('click', () => {});
+
+    // Add click handler to Shinhan logo
+    document.getElementById('shinhanLogo').addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent card click event
+      document.querySelector('.card-container').classList.toggle('flipped');
+      game.setupGame(); // Reset game when flipped
+    });
+
+    // Add click handler to the back of the card to flip back
+    document.querySelector('.card.back').addEventListener('click', (e) => {
+      if (e.target.closest('.game-container')) {
+        // If clicked inside game container, don't flip
+        return;
+      }
+      document.querySelector('.card-container').classList.remove('flipped');
+    });
+  </script>
 </body>
 </html>
