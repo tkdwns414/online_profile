@@ -23,49 +23,22 @@
       align-items: center;
       min-height: 100vh;
       padding: 20px;
-      perspective: 1000px;
-    }
-
-    .card-container {
-      width: 100%;
-      max-width: 400px;
-      height: 450px;
-      position: relative;
-      transition: transform 0.8s;
-      transform-style: preserve-3d;
-      cursor: pointer;
-    }
-
-    .card-container.flipped {
-      transform: rotateY(180deg);
     }
 
     .card {
       background: var(--bg-color);
       border-radius: var(--card-radius);
       padding: 24px;
+      max-width: 400px;
       width: 100%;
-      height: 100%;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-      position: absolute;
-      backface-visibility: hidden;
-      box-sizing: border-box;
-    }
-
-    .card.back {
-      transform: rotateY(180deg);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding-top: 20px;
-      background: var(--bg-color);
+      position: relative;
     }
 
     .logo {
       display: flex;
-      justify-content: flex-start;
-      margin-bottom: 20px;
-      padding-left: 10px;
+      justify-content: center;
+      margin-bottom: 16px;
     }
 
     .logo img {
@@ -75,49 +48,31 @@
     }
 
     .info {
-      text-align: left;
+      text-align: center;
       margin-bottom: 20px;
-      padding: 0 10px;
     }
 
     .info h1 {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       margin: 0;
       color: var(--accent-color);
-      letter-spacing: -0.5px;
-      margin-bottom: 8px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .info h1:hover {
+      transform: scale(1.05);
     }
 
     .info h2 {
-      font-size: 1.1rem;
-      color: var(--text-color);
-      margin: 0;
-      font-weight: 500;
-      margin-bottom: 4px;
+      font-size: 1rem;
+      color: var(--muted-color);
+      margin: 4px 0;
     }
 
     .info h3 {
-      font-size: 1rem;
-      margin: 0;
-      color: var(--muted-color);
-    }
-
-    .info h3.department {
-      margin-bottom: 2px;
-    }
-
-    .info h3.company {
-      font-size: 1.1rem;
-      color: var(--text-color);
-      font-weight: 500;
-      margin-top: 8px;
-    }
-
-    .divider {
-      width: 40px;
-      height: 2px;
-      background-color: var(--accent-color);
-      margin: 15px 0 15px 10px;
+      font-size: 0.9rem;
+      margin: 4px 0;
     }
 
     .contact {
@@ -146,23 +101,17 @@
       width: 40px;
       height: auto;
       filter: brightness(0) invert(1);
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .company-logo:hover {
-      transform: scale(1.1);
     }
 
     /* 2048 Game Styles */
     .game-container {
-      display: block;
-      margin: 0 auto;
+      display: none;
+      margin: 20px auto;
       background: #bbada0;
-      padding: 8px;
+      padding: 10px;
       border-radius: 6px;
-      width: 240px;
-      height: 240px;
+      width: 280px;
+      height: 280px;
     }
 
     .game-grid {
@@ -173,14 +122,14 @@
     }
 
     .grid-cell {
-      width: 52px;
-      height: 52px;
+      width: 60px;
+      height: 60px;
       background: rgba(238, 228, 218, 0.35);
       border-radius: 3px;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: bold;
       color: #776e65;
     }
@@ -201,39 +150,6 @@
     .tile-1024 { background: #edc53f; color: #f9f6f2; }
     .tile-2048 { background: #edc22e; color: #f9f6f2; }
 
-    .social-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin: 15px 0;
-    }
-
-    .social-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 6px 12px;
-      border-radius: 16px;
-      background: var(--accent-color);
-      color: var(--bg-color);
-      text-decoration: none;
-      font-weight: bold;
-      transition: transform 0.2s, background-color 0.2s;
-      border: none;
-      cursor: pointer;
-      font-size: 0.9em;
-    }
-
-    .social-button:hover {
-      transform: translateY(-2px);
-      background: #e4b052;
-    }
-
-    .social-button i {
-      margin-right: 8px;
-      font-size: 1.2em;
-    }
-
     @media (max-width: 480px) {
       .card {
         padding: 16px;
@@ -243,70 +159,40 @@
         font-size: 1.25rem;
       }
 
-      .card-container {
-        height: 400px;
-      }
-
       .game-container {
-        width: 200px;
-        height: 200px;
-        padding: 6px;
+        width: 240px;
+        height: 240px;
       }
 
       .grid-cell {
-        width: 44px;
-        height: 44px;
+        width: 50px;
+        height: 50px;
         font-size: 16px;
-      }
-
-      .social-buttons {
-        flex-wrap: wrap;
-      }
-      
-      .social-button {
-        padding: 6px 12px;
-        font-size: 0.9em;
       }
     }
   </style>
 </head>
 <body>
-  <div class="card-container">
-    <div class="card front">
-      <div class="logo" aria-hidden="true">
-        <img src="bc.jpg" alt="프로필 사진" />
-      </div>
-      <div class="info">
-        <h1 id="nameTitle">Park Sangjune</h1>
-        <h2>Professional Developer</h2>
-        <div class="divider"></div>
-        <h3 class="department">기관서비스개발부</h3>
-        <h3 class="company">Shinhan Bank</h3>
-      </div>
-      <div class="social-buttons">
-        <a href="https://github.com/YOUR_GITHUB" target="_blank" class="social-button">
-          <i>🐱</i> GitHub
-        </a>
-        <a href="https://www.linkedin.com/in/YOUR_LINKEDIN" target="_blank" class="social-button">
-          <i>💼</i> LinkedIn
-        </a>
-        <a href="https://YOUR_BLOG_URL" target="_blank" class="social-button">
-          <i>📝</i> Blog
-        </a>
-      </div>
-      <ul class="contact">
-        <li><a href="tel:+00123456789012" aria-label="Call phone number">📞 +00 1234 5678 9012</a></li>
-        <li><a href="mailto:info@companyname.com" aria-label="Send email">📧 info@companyname.com</a></li>
-        <li><a href="https://www.websiteaddress.com" target="_blank" aria-label="Visit website">🌐 www.websiteaddress.com</a></li>
-        <li><a href="https://maps.google.com/?q=124+Dummy,+Lorem+Ipsum" target="_blank" aria-label="View address on map">📍 서울시 중구 세종대로 9길 20</a></li>
-      </ul>
-      <img src="shinhan.png" alt="Shinhan Bank Logo" class="company-logo" id="shinhanLogo" />
+  <div class="card" role="region" aria-label="디지털 명함">
+    <div class="logo" aria-hidden="true">
+      <img src="bc.jpg" alt="프로필 사진" />
     </div>
-    <div class="card back">
-      <div id="gameContainer" class="game-container">
-        <div class="game-grid" id="gameGrid"></div>
-      </div>
+    <div class="info">
+      <h1 id="nameTitle">Park Sangjune</h1>
+      <h2>Professional Developer</h2>
+      <h3>기관서비스개발부</h3>
+      <h3>Shinhan Bank</h3>
     </div>
+    <div id="gameContainer" class="game-container">
+      <div class="game-grid" id="gameGrid"></div>
+    </div>
+    <ul class="contact">
+      <li><a href="tel:+00123456789012" aria-label="Call phone number">📞 +00 1234 5678 9012</a></li>
+      <li><a href="mailto:info@companyname.com" aria-label="Send email">📧 info@companyname.com</a></li>
+      <li><a href="https://www.websiteaddress.com" target="_blank" aria-label="Visit website">🌐 www.websiteaddress.com</a></li>
+      <li><a href="https://maps.google.com/?q=124+Dummy,+Lorem+Ipsum" target="_blank" aria-label="View address on map">📍 서울시 중구 세종대로 9길 20</a></li>
+    </ul>
+    <img src="shinhan.png" alt="Shinhan Bank Logo" class="company-logo" />
   </div>
 
   <script>
@@ -507,24 +393,10 @@
 
     // Initialize game
     const game = new Game2048();
-    
-    // Remove old click handler from name
-    document.getElementById('nameTitle').removeEventListener('click', () => {});
 
-    // Add click handler to Shinhan logo
-    document.getElementById('shinhanLogo').addEventListener('click', (e) => {
-      e.stopPropagation(); // Prevent card click event
-      document.querySelector('.card-container').classList.toggle('flipped');
-      game.setupGame(); // Reset game when flipped
-    });
-
-    // Add click handler to the back of the card to flip back
-    document.querySelector('.card.back').addEventListener('click', (e) => {
-      if (e.target.closest('.game-container')) {
-        // If clicked inside game container, don't flip
-        return;
-      }
-      document.querySelector('.card-container').classList.remove('flipped');
+    // Add click handler to name
+    document.getElementById('nameTitle').addEventListener('click', () => {
+      game.toggleGame();
     });
   </script>
 </body>
